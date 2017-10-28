@@ -1,0 +1,52 @@
+{
+  "name": "angularjs-typescript-mdl-webpack-seed",
+  "version": "1.0.0",
+  "description": "An angularjs 1.6 typescript material design lite seed project with web pack",
+  "main": "dist/main.bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run dev",
+    "watch": "npm run watch-dev",
+    "watch-prod": "npm run build-dev -- --watch",
+    "watch-dev": "npm run build-prod -- --watch",
+    "build": "npm run build-prod",
+    "build-prod": "npm run webpack -- --config ./config/webpack/production.js --progress --color",
+    "build-dev": "npm run webpack -- --config ./config/webpack/development.js --progress --color",
+    "dev": "npm run webpack-dev-server --  --config ./config/webpack/development.js --open --color",
+    "webpack-dev-server": "webpack-dev-server",
+    "webpack": "webpack"
+  },
+  "keywords": [],
+  "author": "Samuel Sam James Mathew <samuelj90@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/angular": "^1.6.36",
+    "@types/angular-ui-router": "^1.1.40",
+    "@types/gapi": "0.0.35",
+    "@types/jquery": "^3.2.15",
+    "angular-ts-decorators": "^1.2.5",
+    "awesome-typescript-loader": "^3.2.3",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.5",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "lodash": "^4.17.4",
+    "ng-annotate-loader": "^0.6.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "typescript": "^2.5.3",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.3",
+    "webpack-merge": "^4.1.0"
+  },
+  "dependencies": {
+    "@types/node": "^8.0.47",
+    "angular": "^1.6.6",
+    "angular-sanitize": "^1.6.6",
+    "angular-ui-router": "^0.4.3",
+    "material-design-lite": "^1.3.0"
+  }
+}
