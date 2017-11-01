@@ -1,57 +1,31 @@
 import { NgModule } from 'angular-ts-decorators';
 import { AppComponent } from './components/app/app.component';
-import { routes } from './app.routes';
-
-export interface IComponentState extends ng.ui.IState {
-  state: string;
-  component?: any;
-  views?: { [name: string]: IComponentState };
-}
-
+import { ChartComponent } from './components/chart/chart.component';
 @NgModule({
   imports: [
     'ui.router',
     'ngSanitize',
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    ChartComponent
   ]
 })
 export class AppModule {
-  private static setTemplate(state: IComponentState) {
-    const selector = state.component.selector;
-    state.template = `<${selector}></${selector}>`;
-    delete state.component;
+  static config($stateProvider: ng.ui.IStateProvider,
+    $urlRouterProvider: ng.ui.IUrlRouterProvider,
+    $locationProvider: angular.ILocationProvider) {
+    $stateProvider.state('index', {
+      url: '',
+      component: 'app'
+    }).state('index.app', {
+      url: '/hello',
+      component: 'chart'
+    });
+    $urlRouterProvider.otherwise(function () { return { state: 'index.app' } });
+    $locationProvider.html5Mode(true);
   }
-
-  private static provideStates(states: IComponentState[], $stateProvider: ng.ui.IStateProvider) {
-    states.map((config) => {
-      const name = config.state;
-      const namedState = config.views;
-      if (namedState) {
-        const namedViews = Object.keys(namedState);
-        namedViews.forEach((view) => {
-          AppModule.setTemplate(namedState[view]);
-        });
-      }
-      else {
-        AppModule.setTemplate(config);
-      }
-      delete config.state;
-      return {name, config};
-    }).forEach(state => $stateProvider.state(state.name, state.config));
-  }
-
-  /*@ngInject*/
-  config($urlRouterProvider: ng.ui.IUrlRouterProvider,
-         $stateProvider: ng.ui.IStateProvider) {
-    AppModule.provideStates(routes, $stateProvider);
-    $urlRouterProvider.otherwise('/');
-  }
-
-  /*@ngInject*/
-  run($window: ng.IWindowService, $q: ng.IQService) {
-    // replace browser Promise to $q in app
+  static run($window: ng.IWindowService, $q: ng.IQService) {
     $window.Promise = $q;
   }
 }

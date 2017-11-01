@@ -65,7 +65,6 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: [
-          'ng-annotate-loader',
           'awesome-typescript-loader'
         ],
       }
