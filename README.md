@@ -22,3 +22,4 @@ To start building the project
 - Add proper documentation
 - Add testing support
 - Add Authentication support
+- Fix injecting dependencies in production
