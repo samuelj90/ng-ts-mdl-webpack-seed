@@ -14,8 +14,7 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.html$/,
         exclude: /node_modules/,
         loader: 'html-loader'
@@ -60,6 +59,18 @@ module.exports = {
             }
           })()
         }]
+      },
+      {
+        test: /src.*\.js$/,
+        use: [{
+          loader: 'ng-annotate-loader'
+        }],
+      },
+      {
+        test: /src.*\.ts$/,
+        use: [{
+          loader: 'ng-annotate-loader'
+        }],
       },
       {
         test: /\.tsx?$/,
